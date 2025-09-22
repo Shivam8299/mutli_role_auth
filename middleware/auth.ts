@@ -19,7 +19,7 @@ export const protect = async (req: AuthRequest, res: Response, next: NextFunctio
     token = req.headers.authorization.split(" ")[1];
 
     try {
-      const secret = process.env.JWT_SECRET || "secret"; // use strong secret in production
+      const secret = process.env.JWT_SECRET || "secret"; 
       const decoded = jwt.verify(token, secret) as JwtPayload;
 
       const user = await User.findById(decoded.id).select("-password");
